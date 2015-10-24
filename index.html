@@ -39,12 +39,23 @@
 
    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+   <input type='text' id='nameInput' placeholder='Name'>
+   <input type='text' id='messageInput' placeholder='Message'>
 
    <!-- Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-   var myDataRef = new Firebase('https://ktbafplq4lo.firebaseio-demo.com/');
+   <script type="text/javascript">
+      var myDataRef = new Firebase('https://ktbafplq4lo.firebaseio-demo.com/');
 
+      $('#messageInput').keypress(function(e) {
+         if (e.keyCode == 13) {
+            var name = $('#nameInput').val();
+            var text = $('#messageInput').val();
+            myDataRef.push({name: name, text: text});
+            $('#messageInput').val('');
+         }
+      });
+   </script>
 
    <!-- End Document
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
